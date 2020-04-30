@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import Aux from '../../hoc/Aux/Aux';
+import constants from '../../constants';
+import axios from 'axios';
 import Search from '../../components/UI/Search/Search';
+import PhotoGrid from '../PhotoGrid/PhotoGrid';
 
 class Gallery extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchInput: null
+            searchInput: null,
+            imageList: []
         }
     }
 
@@ -15,7 +19,14 @@ class Gallery extends Component {
     }
 
     searchHandler = (event) => {
-        console.log(this.state.searchInput);
+        const url = constants.BASE_URL + "&text=" + this.state.searchInput;
+        axios.get(url)
+            .then(response => {
+                this.setState({imageList: response.data.photos.photo});
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     render () {
@@ -24,6 +35,7 @@ class Gallery extends Component {
                 <Search
                     searchInputHandler={this.searchInputHandler}
                     searchHandler={this.searchHandler}/>
+                <PhotoGrid />
             </Aux>
         );
     }
