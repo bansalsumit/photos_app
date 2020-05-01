@@ -1,7 +1,4 @@
 .Button {
-    background-color: transparent;
-    border: none;
-    color: white;
     outline: none;
     cursor: pointer;
     font: inherit;
@@ -21,4 +18,11 @@
 
 .Danger {
     color: #944317;
+}
+
+.SearchButton {
+    margin: 5px 10px !important;
+    padding: 5px 10px !important;
+    height: 40px;
+    background-color: palegreen;
 }

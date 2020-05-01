@@ -4,6 +4,7 @@ import constants from '../../constants';
 import axios from 'axios';
 import Search from '../../components/UI/Search/Search';
 import PhotoGrid from '../PhotoGrid/PhotoGrid';
+import styles from './Gallery.module.css';
 
 class Gallery extends Component {
     state = {
@@ -33,9 +34,11 @@ class Gallery extends Component {
         }
         return (
             <Aux>
-                <Search
-                    searchInputHandler={this.searchInputHandler}
-                    searchHandler={this.searchHandler}/>
+                <div className={styles.Nav}>
+                    <Search
+                        searchInputHandler={this.searchInputHandler}
+                        searchHandler={this.searchHandler}/>
+                </div>
                 {photogrid}
             </Aux>
         );
