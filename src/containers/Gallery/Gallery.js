@@ -9,7 +9,7 @@ import styles from './Gallery.module.css';
 class Gallery extends Component {
     state = {
         searchInput: null,
-        imageList: [],
+        imageList: {},
         columnsInGrid: 2
     }
 
@@ -18,14 +18,20 @@ class Gallery extends Component {
     }
 
     searchHandler = (event) => {
-        const url = constants.BASE_URL + "&text=" + this.state.searchInput;
-        axios.get(url)
-            .then(response => {
-                this.setState({imageList: response.data.photos.photo});
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        if (!this.state.imageList[this.state.searchInput]) {
+            const url = constants.BASE_URL + "&text=" + this.state.searchInput;
+            axios.get(url)
+                .then(response => {
+                    let imageList = {
+                        ...this.state.imageList
+                    }
+                    imageList[this.state.searchInput] = response.data.photos.photo;
+                    this.setState({imageList: imageList});
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
     }
 
     columnChangeHandler = (event) => {
@@ -34,8 +40,8 @@ class Gallery extends Component {
 
     render () {
         let photogrid = null;
-        if (this.state.imageList.length > 0) {
-            photogrid = <PhotoGrid images={this.state.imageList} columns={this.state.columnsInGrid}/>
+        if (this.state.imageList[this.state.searchInput]) {
+            photogrid = <PhotoGrid images={this.state.imageList[this.state.searchInput]} columns={this.state.columnsInGrid}/>
         }
         return (
             <Aux>

@@ -7,7 +7,7 @@ const search = (props) => {
     return (
         <Aux>
             <Button clicked={props.searchHandler} btnType="SearchButton">search images</Button><br />
-            <input onChange={props.searchInputHandler} className={styles.SearchInput}/>
+            <input onChange={props.searchInputHandler} className={styles.SearchInput} id="search-field"/>
         </Aux>
     );
 };
