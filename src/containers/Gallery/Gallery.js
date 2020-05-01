@@ -89,7 +89,6 @@ class Gallery extends Component {
     }
 
     render () {
-        debugger
         let photogrid = null;
         if (this.state.imageList[this.state.searchInput]) {
             photogrid = <PhotoGrid images={this.state.imageList[this.state.searchInput]} columns={this.state.columnsInGrid}/>
