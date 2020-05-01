@@ -49,8 +49,8 @@ class Gallery extends Component {
                         {photogrid}
                     </div>
                     <div className={styles.GridChangeSection}>
-                        <label for="grid">Choose columns in grid:</label><br/>
-                        <select id="grid" className={styles.GridDropDown} onChange={this.columnChangeHandler}>
+                        <label>Choose columns in grid:</label><br/>
+                        <select className={styles.GridDropDown} onChange={this.columnChangeHandler}>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>

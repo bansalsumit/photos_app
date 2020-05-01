@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './PhotoGrid.module.css';
 import Aux from '../../hoc/Aux/Aux';
 import Photo from '../../components/Photo/Photo';
 
@@ -11,14 +12,14 @@ class PhotoGrid extends Component {
                 rowBreak = true;
             }
             return (
-                <Aux>
-                    <Photo key={index} image={image}/>
+                <Aux key={index}>
+                    <Photo image={image}/>
                     { rowBreak ? <br /> : null }
                 </Aux>
             )
         });
         return (
-            <ul>
+            <ul className={styles.ImagesList}>
                 {images}
             </ul>
         );
