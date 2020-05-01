@@ -9,7 +9,8 @@ import styles from './Gallery.module.css';
 class Gallery extends Component {
     state = {
         searchInput: null,
-        imageList: []
+        imageList: [],
+        columnsInGrid: 2
     }
 
     searchInputHandler = (event) => {
@@ -27,10 +28,14 @@ class Gallery extends Component {
             });
     }
 
+    columnChangeHandler = (event) => {
+        this.setState({columnsInGrid: event.target.value});
+    }
+
     render () {
         let photogrid = null;
         if (this.state.imageList.length > 0) {
-            photogrid = <PhotoGrid images={this.state.imageList}/>
+            photogrid = <PhotoGrid images={this.state.imageList} columns={this.state.columnsInGrid}/>
         }
         return (
             <Aux>
@@ -39,7 +44,19 @@ class Gallery extends Component {
                         searchInputHandler={this.searchInputHandler}
                         searchHandler={this.searchHandler}/>
                 </div>
-                {photogrid}
+                <div>
+                    <div className={styles.ImagesSection}>
+                        {photogrid}
+                    </div>
+                    <div className={styles.GridChangeSection}>
+                        <label for="grid">Choose columns in grid:</label><br/>
+                        <select id="grid" className={styles.GridDropDown} onChange={this.columnChangeHandler}>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
             </Aux>
         );
     }
