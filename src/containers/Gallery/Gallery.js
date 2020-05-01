@@ -6,12 +6,9 @@ import Search from '../../components/UI/Search/Search';
 import PhotoGrid from '../PhotoGrid/PhotoGrid';
 
 class Gallery extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchInput: null,
-            imageList: []
-        }
+    state = {
+        searchInput: null,
+        imageList: []
     }
 
     searchInputHandler = (event) => {
@@ -30,12 +27,16 @@ class Gallery extends Component {
     }
 
     render () {
+        let photogrid = null;
+        if (this.state.imageList.length > 0) {
+            photogrid = <PhotoGrid images={this.state.imageList}/>
+        }
         return (
             <Aux>
                 <Search
                     searchInputHandler={this.searchInputHandler}
                     searchHandler={this.searchHandler}/>
-                <PhotoGrid />
+                {photogrid}
             </Aux>
         );
     }
